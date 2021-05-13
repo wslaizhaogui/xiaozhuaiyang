@@ -2,6 +2,10 @@ package com.xiaozhuaiyang.business.user.model;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
+import lombok.Data;
+
 
 /**
  * @Author: zglai
@@ -9,38 +13,25 @@ import java.io.Serializable;
  * @Description:<描述>
  */
 @Entity
-@Table(name="user")
+@Data
+@Table(name="t_user")   //省略默认表名就是user
 public class User implements Serializable {
-    private static final long seriaVersionUID = 1L;
     @Id
     @GeneratedValue
     private Long id;
-    @Column(name = "username")
+
+    @Column(name = "username",length = 50)
     private String userName;
-    @Column(name = "password")
+
+    @Column(name = "pingyin",length=50)
+    private String pingyin;
+
+    @Column(name = "password",length=50)
     private String passWord;
 
-    public Long getId() {
-        return id;
-    }
+    @Column(name="email",length = 50)
+    private String email;
 
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getUserName() {
-        return userName;
-    }
-
-    public void setUserName(String userName) {
-        this.userName = userName;
-    }
-
-    public String getPassWord() {
-        return passWord;
-    }
-
-    public void setPassWord(String passWord) {
-        this.passWord = passWord;
-    }
+    @Column(name="IdNumber",length = 50)
+    private String IdNumber;
 }
