@@ -1,5 +1,7 @@
 package com.xiaozhuaiyang.test;
 
+import java.util.concurrent.atomic.AtomicBoolean;
+
 /**
  * @Author: zglai
  * Date:0:20 2021/5/10
@@ -12,7 +14,5 @@ public class ThreadTest extends Thread {
     }
 
     public static void main(String[] args) {
-        ThreadTest t = new ThreadTest();
-        t.start();
     }
 }
