@@ -1,6 +1,7 @@
 package com.xiaozhuaiyang.test;
 
 import java.util.concurrent.atomic.AtomicBoolean;
+import java.util.concurrent.atomic.AtomicInteger;
 
 /**
  * @Author: zglai
@@ -10,9 +11,6 @@ import java.util.concurrent.atomic.AtomicBoolean;
 public class ThreadTest extends Thread {
     @Override
     public void run(){
-        System.out.println("run");
-    }
 
-    public static void main(String[] args) {
     }
 }

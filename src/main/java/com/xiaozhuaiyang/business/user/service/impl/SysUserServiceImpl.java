@@ -23,4 +23,11 @@ public class SysUserServiceImpl implements SysUserService {
         User u = userDao.save(user);
         return u==null?"false":"success";
     }
+
+    public static void main(String[] args) {
+        String a = "aa";
+        String b = "aa";
+        short c = 1;
+        System.out.println(a == b);
+    }
 }
