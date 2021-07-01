@@ -2,6 +2,8 @@ package com.xiaozhuaiyang.business.user.service;
 
 import com.xiaozhuaiyang.business.user.model.User;
 
+import java.util.List;
+
 /**
  * @Author: zglai
  * Date:22:38 2021/5/13
@@ -11,5 +13,5 @@ public interface SysUserService {
     /**
      * 添加用户
      */
-    String addUser(User user);
+    List<User> getUserList();
 }

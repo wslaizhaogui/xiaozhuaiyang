@@ -1,5 +1,6 @@
 package com.xiaozhuaiyang.business.user.mapper;
 
+import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.xiaozhuaiyang.business.user.model.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 
@@ -8,5 +9,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
  * Date:22:30 2021/5/13
  * @Description:<描述>
  */
-public interface UserDao extends JpaRepository<User,Long> {
+public interface UserMapper extends BaseMapper<User> {
 }

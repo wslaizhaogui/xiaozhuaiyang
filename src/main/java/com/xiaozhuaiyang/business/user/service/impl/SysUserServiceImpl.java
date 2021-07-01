@@ -1,11 +1,12 @@
 package com.xiaozhuaiyang.business.user.service.impl;
 
-import com.xiaozhuaiyang.business.user.mapper.UserDao;
+import com.xiaozhuaiyang.business.user.mapper.UserMapper;
 import com.xiaozhuaiyang.business.user.model.User;
 import com.xiaozhuaiyang.business.user.service.SysUserService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import javax.annotation.Resource;
+import java.util.List;
 
 /**
  * @Author: zglai
@@ -15,19 +16,12 @@ import javax.annotation.Resource;
 @Service
 public class SysUserServiceImpl implements SysUserService {
 
-    @Resource
-    private UserDao userDao;
+    @Autowired
+    UserMapper userMapper;
 
     @Override
-    public String addUser(User user) {
-        User u = userDao.save(user);
-        return u==null?"false":"success";
-    }
-
-    public static void main(String[] args) {
-        String a = "aa";
-        String b = "aa";
-        short c = 1;
-        System.out.println(a == b);
+    public List<User> getUserList() {
+        List<User> list = userMapper.selectList(null);
+        return list;
     }
 }
