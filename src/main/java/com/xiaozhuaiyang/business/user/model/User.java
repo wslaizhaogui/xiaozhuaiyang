@@ -1,9 +1,7 @@
 package com.xiaozhuaiyang.business.user.model;
 
-import javax.persistence.*;
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
+import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
 
 
@@ -13,8 +11,9 @@ import lombok.Data;
  * @Description:<描述>
  */
 @Data
+@TableName("sys_user")
 public class User implements Serializable {
     private Long userId;
     private Long deptId;
-    private String longName;
+    private String loginName;
 }
