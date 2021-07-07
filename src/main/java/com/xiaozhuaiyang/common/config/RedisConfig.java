@@ -25,12 +25,13 @@ public class RedisConfig {
         RedisTemplate<String, Object> template = new RedisTemplate<>();
         template.setConnectionFactory(redisConnectionFactory);
 
-        //json系列化配置
+        //json系列化配置 //value采用该系列化方式存储
         Jackson2JsonRedisSerializer jackson2JsonRedisSerializer = new Jackson2JsonRedisSerializer(Object.class);
         ObjectMapper om = new ObjectMapper();
         om.setVisibility(PropertyAccessor.ALL, JsonAutoDetect.Visibility.ANY);
         om.enableDefaultTyping(ObjectMapper.DefaultTyping.NON_FINAL);
         jackson2JsonRedisSerializer.setObjectMapper(om);
+        //key采用该系列化方式存储
         StringRedisSerializer stringRedisSerializer = new StringRedisSerializer();
 
         //key采用stirng的序列化方式
@@ -38,8 +39,8 @@ public class RedisConfig {
         //hash的key采用string的序列化方式
         template.setHashKeySerializer(stringRedisSerializer);
         //
-        template.setValueSerializer(stringRedisSerializer);
-        template.setHashValueSerializer(stringRedisSerializer);
+        template.setValueSerializer(jackson2JsonRedisSerializer);
+        template.setHashValueSerializer(jackson2JsonRedisSerializer);
         template.afterPropertiesSet();
         return template;
     }
