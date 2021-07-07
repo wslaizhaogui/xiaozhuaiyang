@@ -11,7 +11,12 @@ import java.util.List;
  */
 public interface SysUserService {
     /**
-     * 添加用户
+     * 获取用户列表
      */
     List<SysUser> getUserList();
+
+    /**
+     * 查找用户
+     */
+    SysUser getSysUser(String id);
 }

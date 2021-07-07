@@ -16,6 +16,7 @@ import java.lang.reflect.Method;
 @EnableCaching
 public class RedisConfig {
     @Bean
+    @ConditionalOnMissingBean(name = "redisTemplate")
     @ConditionalOnSingleCandidate(RedisConnectionFactory.class)
     public RedisTemplate<Object, Object> redisTemplate(RedisConnectionFactory redisConnectionFactory) {
         RedisTemplate<Object, Object> template = new RedisTemplate<>();

@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 /**
  * @Author: zglai
@@ -24,13 +26,23 @@ public class UserController {
     @Autowired
     private SysUserService sysUserService;
 
-    @Autowired
-    RedisTemplate redisTemplate;
-
     @GetMapping("/getUserList")
     public String getUserList() {
         List<SysUser> list = sysUserService.getUserList();
         return JSONObject.toJSONString(list);
     }
 
+    @GetMapping("/getUserById")
+    public Object getUserById(){
+        ExecutorService executorService = Executors.newFixedThreadPool(16);
+        for(int i=0;i<10000;i++){
+            executorService.submit(new Runnable() {
+                @Override
+                public void run() {
+                    sysUserService.getSysUser("1");
+                }
+            });
+        }
+        return sysUserService.getSysUser("1");
+    }
 }
