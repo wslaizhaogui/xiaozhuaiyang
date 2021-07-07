@@ -1,6 +1,6 @@
 package com.xiaozhuaiyang.business.user.service;
 
-import com.xiaozhuaiyang.business.user.model.User;
+import com.xiaozhuaiyang.business.user.entity.SysUser;
 
 import java.util.List;
 
@@ -13,5 +13,5 @@ public interface SysUserService {
     /**
      * 添加用户
      */
-    List<User> getUserList();
+    List<SysUser> getUserList();
 }

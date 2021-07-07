@@ -11,9 +11,9 @@ public class getNumberMeony {
     public static void main(String[] args) {
         Random random = new Random();
         //21060
-        List<Integer> excludeNum5 = Arrays.asList(1,4,6,15,19,20,23,26,32,34,33,35);
-        List<Integer> excludeNum2 = Arrays.asList(1,3,4,5,7,9,11,12);
-        for(int i=0;i<10;i++){
+        List<Integer> excludeNum5 = Arrays.asList(3,8,11,7,15,13,17,1);
+        List<Integer> excludeNum2 = Arrays.asList(1,3,5,7,9,11,12);
+        for(int i=0;i<5;i++){
             List<Integer> num5 = new ArrayList<>();
             List<Integer> num2 = new ArrayList<>();
             //选5个
