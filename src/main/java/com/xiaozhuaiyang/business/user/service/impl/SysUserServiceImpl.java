@@ -4,8 +4,8 @@ import com.xiaozhuaiyang.business.user.entity.SysUser;
 import com.xiaozhuaiyang.business.user.mapper.SysUserMapper;
 import com.xiaozhuaiyang.business.user.service.SysUserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.data.redis.core.RedisTemplate;
-import org.springframework.data.redis.serializer.StringRedisSerializer;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -22,18 +22,20 @@ public class SysUserServiceImpl implements SysUserService {
     SysUserMapper sysUserMapper;
 
     @Autowired
+    @Qualifier("redisTemplate")
     RedisTemplate redisTemplate;
 
     @Override
     public List<SysUser> getUserList() {
         List<SysUser> list = sysUserMapper.selectList(null);
-        redisTemplate.opsForValue().set("user","aaaa");
+        redisTemplate.opsForValue().set("user",sysUserMapper.selectById("1"));
+        System.out.println(redisTemplate.opsForValue().get("user"));
         return list;
     }
 
     @Override
     public SysUser getSysUser(String id) {
-        redisTemplate.setKeySerializer(new StringRedisSerializer());
+        //redisTemplate.setKeySerializer(new StringRedisSerializer());
         SysUser sysUser = (SysUser) redisTemplate.opsForValue().get("user");
         if(null == sysUser){
             synchronized (this){
