@@ -35,7 +35,7 @@ public class UserController {
     @GetMapping("/getUserById")
     public Object getUserById(){
         ExecutorService executorService = Executors.newFixedThreadPool(16);
-        for(int i=0;i<10000;i++){
+        for(int i=0;i<100;i++){
             executorService.submit(new Runnable() {
                 @Override
                 public void run() {

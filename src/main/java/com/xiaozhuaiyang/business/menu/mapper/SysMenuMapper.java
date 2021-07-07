@@ -1,4 +1,4 @@
-package com.xiaozhuaiyang.business.user.mapper;
+package com.xiaozhuaiyang.business.menu.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.xiaozhuaiyang.business.user.entity.SysMenu;
