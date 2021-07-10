@@ -1,4 +1,4 @@
-package com.xiaozhuaiyang.common.config;
+package com.xiaozhuaiyang.framework.redis;
 
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.PropertyAccessor;
@@ -20,28 +20,34 @@ import java.lang.reflect.Method;
 @Configuration
 public class RedisConfig {
     @Bean
-    public RedisTemplate<String, Object> redisTemplate(RedisConnectionFactory redisConnectionFactory) {
-        //为了方便开发 一般直接使用<String,Object>
-        RedisTemplate<String, Object> template = new RedisTemplate<>();
-        template.setConnectionFactory(redisConnectionFactory);
+    @SuppressWarnings("all")
+    public RedisTemplate<String, Object> redisTemplate(RedisConnectionFactory factory) {
 
-        //json系列化配置 //value采用该系列化方式存储
+        RedisTemplate<String, Object> template = new RedisTemplate<String, Object>();
+        template.setConnectionFactory(factory);
+
+        // 序列化配置 解析任意对象
         Jackson2JsonRedisSerializer jackson2JsonRedisSerializer = new Jackson2JsonRedisSerializer(Object.class);
+        // json序列化利用ObjectMapper进行转义
         ObjectMapper om = new ObjectMapper();
         om.setVisibility(PropertyAccessor.ALL, JsonAutoDetect.Visibility.ANY);
         om.enableDefaultTyping(ObjectMapper.DefaultTyping.NON_FINAL);
         jackson2JsonRedisSerializer.setObjectMapper(om);
-        //key采用该系列化方式存储
+        // 2.序列化String类型
         StringRedisSerializer stringRedisSerializer = new StringRedisSerializer();
 
-        //key采用stirng的序列化方式
+        // key采用String的序列化方式
         template.setKeySerializer(stringRedisSerializer);
-        //hash的key采用string的序列化方式
+        // hash的key也采用String的序列化方式
         template.setHashKeySerializer(stringRedisSerializer);
-        //
+        // value序列化方式采用jackson
         template.setValueSerializer(jackson2JsonRedisSerializer);
+        // hash的value序列化方式采用jackson
         template.setHashValueSerializer(jackson2JsonRedisSerializer);
         template.afterPropertiesSet();
+
         return template;
     }
+
+
 }

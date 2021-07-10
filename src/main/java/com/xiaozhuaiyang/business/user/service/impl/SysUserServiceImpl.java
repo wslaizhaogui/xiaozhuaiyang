@@ -3,6 +3,7 @@ package com.xiaozhuaiyang.business.user.service.impl;
 import com.xiaozhuaiyang.business.user.entity.SysUser;
 import com.xiaozhuaiyang.business.user.mapper.SysUserMapper;
 import com.xiaozhuaiyang.business.user.service.SysUserService;
+import com.xiaozhuaiyang.common.util.RedisUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.data.redis.core.RedisTemplate;
@@ -22,28 +23,26 @@ public class SysUserServiceImpl implements SysUserService {
     SysUserMapper sysUserMapper;
 
     @Autowired
-    @Qualifier("redisTemplate")
-    RedisTemplate redisTemplate;
+    private RedisUtils redisUtils;
 
     @Override
     public List<SysUser> getUserList() {
         List<SysUser> list = sysUserMapper.selectList(null);
-        redisTemplate.opsForValue().set("user",sysUserMapper.selectById("1"));
-        System.out.println(redisTemplate.opsForValue().get("user"));
+        redisUtils.set("user",sysUserMapper.selectById("1"));
+        System.out.println(redisUtils.get("user"));
         return list;
     }
 
     @Override
     public SysUser getSysUser(String id) {
-        //redisTemplate.setKeySerializer(new StringRedisSerializer());
-        SysUser sysUser = (SysUser) redisTemplate.opsForValue().get("user");
+        SysUser sysUser = (SysUser) redisUtils.get("user");
         if(null == sysUser){
             synchronized (this){
-                sysUser = (SysUser) redisTemplate.opsForValue().get("user");
+                sysUser = (SysUser) redisUtils.get("user");
                 if(sysUser == null){
                     System.out.println("从数据库中获取！");
                     sysUser = sysUserMapper.selectById(id);
-                    redisTemplate.opsForValue().set("user",sysUser);
+                    redisUtils.set("user",sysUser);
                 }else{
                     System.out.println("从redis中查询~");
                 }
