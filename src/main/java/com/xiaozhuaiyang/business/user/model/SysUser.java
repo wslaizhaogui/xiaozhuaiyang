@@ -1,11 +1,14 @@
-package com.xiaozhuaiyang.business.user.entity;
+package com.xiaozhuaiyang.business.user.model;
 
 import com.baomidou.mybatisplus.annotation.IdType;
 import java.util.Date;
 import com.baomidou.mybatisplus.annotation.TableId;
 import java.io.Serializable;
 import lombok.Data;
-import lombok.EqualsAndHashCode;
+import org.springframework.validation.annotation.Validated;
+
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
 
 /**
  * <p>
@@ -16,15 +19,16 @@ import lombok.EqualsAndHashCode;
  * @since 2021-07-02
  */
 @Data
-  @EqualsAndHashCode(callSuper = false)
-    public class SysUser implements Serializable {
+@Validated
+public class SysUser implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
       /**
      * 用户ID
      */
-        @TableId(value = "user_id", type = IdType.AUTO)
+      @TableId(value = "user_id", type = IdType.AUTO)
+      @NotBlank(message = "用户id不能为空")
       private Long userId;
 
       /**
@@ -50,6 +54,7 @@ import lombok.EqualsAndHashCode;
       /**
      * 用户邮箱
      */
+      @Email(message="邮箱格式错误")
       private String email;
 
       /**

@@ -1,7 +1,7 @@
 package com.xiaozhuaiyang.business.user.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import com.xiaozhuaiyang.business.user.entity.SysUser;
+import com.xiaozhuaiyang.business.user.model.SysUser;
 
 /**
  * <p>

@@ -1,0 +1,13 @@
+server:
+  port: 8081
+
+# Redis≈‰÷√
+spring:
+  redis:
+    host: 122.152.204.166
+    port: 6379
+    database: 5
+    password:
+    timeout:  30000
+
+

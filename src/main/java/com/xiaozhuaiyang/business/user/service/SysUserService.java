@@ -1,6 +1,6 @@
 package com.xiaozhuaiyang.business.user.service;
 
-import com.xiaozhuaiyang.business.user.entity.SysUser;
+import com.xiaozhuaiyang.business.user.model.SysUser;
 
 import java.util.List;
 

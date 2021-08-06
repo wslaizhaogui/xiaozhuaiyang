@@ -1,12 +1,10 @@
 package com.xiaozhuaiyang.business.user.service.impl;
 
-import com.xiaozhuaiyang.business.user.entity.SysUser;
+import com.xiaozhuaiyang.business.user.model.SysUser;
 import com.xiaozhuaiyang.business.user.mapper.SysUserMapper;
 import com.xiaozhuaiyang.business.user.service.SysUserService;
 import com.xiaozhuaiyang.common.util.RedisUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -28,8 +26,8 @@ public class SysUserServiceImpl implements SysUserService {
     @Override
     public List<SysUser> getUserList() {
         List<SysUser> list = sysUserMapper.selectList(null);
-        redisUtils.set("user",sysUserMapper.selectById("1"));
-        System.out.println(redisUtils.get("user"));
+        /*redisUtils.set("user",sysUserMapper.selectById("1"));
+        System.out.println(redisUtils.get("user"));*/
         return list;
     }
 

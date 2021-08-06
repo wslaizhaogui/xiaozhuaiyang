@@ -1,0 +1,21 @@
+# ˝æ›ø‚≈‰÷√
+spring:
+  profiles:
+    active: dev
+
+---
+spring:
+  profiles: dev
+  datasource:
+    url: jdbc:mysql://122.152.204.166:3307/hode?serverTimezone=GMT%2B8
+    username: root
+    password: Lai123321
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+Dog:
+  name: jack
+  age: 20
+
+---
+spring:
+  profiles: test

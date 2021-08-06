@@ -1,16 +1,11 @@
 package com.xiaozhuaiyang.business.user.Controller;
 
-import com.alibaba.fastjson.JSONObject;
-import com.xiaozhuaiyang.business.user.entity.SysUser;
 import com.xiaozhuaiyang.business.user.service.SysUserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -20,16 +15,18 @@ import java.util.concurrent.Executors;
  * @Description:<描述>
  */
 @RestController
-@RequestMapping("/system/user")
+@RequestMapping("")
 public class UserController {
 
     @Autowired
     private SysUserService sysUserService;
 
-    @GetMapping("/getUserList")
+    @GetMapping("")
     public String getUserList() {
-        List<SysUser> list = sysUserService.getUserList();
-        return JSONObject.toJSONString(list);
+       /* List<SysUser> list = sysUserService.getUserList();
+        return JSONObject.toJSONString(list);*/
+        System.out.println("这是8081端口~");
+        return "这是8081端口~";
     }
 
     @GetMapping("/getUserById")

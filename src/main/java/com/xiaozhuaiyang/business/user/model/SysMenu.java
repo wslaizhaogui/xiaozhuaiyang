@@ -1,10 +1,8 @@
-package com.xiaozhuaiyang.business.user.entity;
+package com.xiaozhuaiyang.business.user.model;
 
-import com.baomidou.mybatisplus.annotation.FieldFill;
 import com.baomidou.mybatisplus.annotation.IdType;
 import java.util.Date;
 
-import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import java.io.Serializable;
 import lombok.Data;
